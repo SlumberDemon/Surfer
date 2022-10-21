@@ -1,2 +1,6 @@
-# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
-v: 0
+v: 1
+icon: ./static/images/icon.png
+micros:
+- name: surfer
+  src: .
+  engine: python3.9
