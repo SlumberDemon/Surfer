@@ -39,20 +39,16 @@ async def search_results(request: Request, query: str, results: int = 50):
         return {"message": "404"}
 
 
-@app.post("/bookmark")  # Make into post  but fix script.js first
-async def bookmark_results(title: str, description: str, url: str):
+@app.post("/bookmark")
+async def bookmark_add(title: str, description: str, url: str):
     bookmarks.put({"title": title, "description": [description], "url": url})
     return {"message": "success"}
 
 
-@app.get("/history")
-async def history_page(request: Request):
-    res = history.fetch()
-    items = res.items
-    while res.last:
-        res = history.fetch(last=res.last)
-        items += res.items
-    return pages.TemplateResponse("history.html", {"request": request, "items": items})
+@app.delete("/bookmark")
+async def bookmark_remove(id: str):
+    bookmarks.delete(id)
+    return {"message": "success"}
 
 
 @app.get("/bookmarks")
@@ -65,6 +61,16 @@ async def bookmarks_page(request: Request):
     return pages.TemplateResponse(
         "bookmarks.html", {"request": request, "items": items}
     )
+
+
+@app.get("/history")
+async def history_page(request: Request):
+    res = history.fetch()
+    items = res.items
+    while res.last:
+        res = history.fetch(last=res.last)
+        items += res.items
+    return pages.TemplateResponse("history.html", {"request": request, "items": items})
 
 
 @app.get("/static/{path:path}")
