@@ -1,4 +1,5 @@
 from deta import Base
+from datetime import datetime
 from duckduckgo_search import ddg
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
@@ -30,7 +31,12 @@ async def home(request: Request):
 @app.get("/search", response_class=HTMLResponse)
 async def search_results(request: Request, query: str, results: int = 50):
     if query != None:
-        history.put({"query": query})  # Maybe also add time
+        history.put(
+            {
+                "query": query,
+                "time": f"{datetime.strftime('%A')}, {datetime.strftime('%B')} {datetime.strftime('%-d')}, {datetime.strftime('%Y')} {datetime.strftime('%-H')}:{datetime.strftime('%M')}:{datetime.strftime('%S')} {datetime.strftime('%p')}",
+            }
+        )  # Maybe also add time
         results = ddg(query, safesearch="Moderate", max_results=results)
         return pages.TemplateResponse(
             "search.html", {"request": request, "items": results, "query": query}
@@ -61,6 +67,12 @@ async def bookmarks_page(request: Request):
     return pages.TemplateResponse(
         "bookmarks.html", {"request": request, "items": items}
     )
+
+
+@app.delete("/history")
+async def history_remove(id: str):
+    history.delete(id)
+    return {"message": "success"}
 
 
 @app.get("/history")

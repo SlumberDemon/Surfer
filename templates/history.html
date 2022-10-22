@@ -6,3 +6,43 @@ Notes:
 - disable history toggle botton
 
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Surfer</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/images/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/styles/style.css" />
+</head>
+
+<body>
+    <div class="menu-bar" style="margin-top: 20px;">
+        <a href="/" class="button"><i class=" fa fa-home"></i></a>
+        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i> Bookmarks</a>
+        <a href="/settings" class="button"><i class=" fa fa-gear"></i> Settings</a>
+    </div>
+    <div class="history">
+        {% for item in items %}
+        <div class="content-card">
+            <div class="card-details">
+                <div class="card-header">
+                    <h2 id="card-title" style="color: #FA009A;">{{ item["query"] }}</h2>
+                    <p id="card-summary">{{ item["time"] }}</p>
+                </div>
+                <div class="card-bottom" style="margin-top: 10px;">
+                    <a href="{{ item['url'] }}" class="button search-button"><i class=" fa fa-search"></i></a>
+                    <a id="{{ item['key'] }}" class="button remove-button"><i class=" fa fa-trash"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+<script src="/static/scripts/history.js"></script>
+
+</html>

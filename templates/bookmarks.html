@@ -1,12 +1,3 @@
-<!--Placeholder
-
-Notes:
-- Shows bookmarks 
-- Delete button
-- Share button to copy link to clipboard
-
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +9,6 @@ Notes:
     <link rel="icon" href="/static/images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/static/styles/style.css" />
-    <link rel="stylesheet" href="/static/styles/bookmark.css" />
 </head>
 
 <body>
@@ -29,7 +19,7 @@ Notes:
     </div>
     <div class="bookmarks">
         {% for item in items %}
-        <div class="mark-card">
+        <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
                     <h2 id="card-title" style="color: #FA009A;">{{ item["title"] }}</h2>
