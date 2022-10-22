@@ -1,0 +1,28 @@
+.result-card {
+    width: 600px;
+    height: fit-content;
+    overflow: hidden;
+    border: 1px solid;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border-color: #B006D6;
+    background-color: #6905ED;
+    box-shadow: 0 0 4px #B006D6;
+    flex-direction: row;
+    display: flex;
+    margin-top: auto;
+    color: #B006D6;
+    margin-bottom: 10px;
+}
+
+.card-details {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+.card-bottom {
+    margin-bottom: 5px;
+}
