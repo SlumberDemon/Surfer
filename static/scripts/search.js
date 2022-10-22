@@ -2,7 +2,7 @@ let saveButtons = document.getElementsByClassName("save-button");
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
-  }
+}
   
 
 for (let button of saveButtons) {
