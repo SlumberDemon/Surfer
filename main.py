@@ -33,7 +33,7 @@ async def search_results(request: Request, query: str, results: int = 50):
         history.put({"query": query})  # Maybe also add time
         results = ddg(query, safesearch="Moderate", max_results=results)
         return pages.TemplateResponse(
-            "search.html", {"request": request, "items": results}
+            "search.html", {"request": request, "items": results, "query": query}
         )
     else:
         return {"message": "404"}

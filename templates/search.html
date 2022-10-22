@@ -13,11 +13,12 @@
 
 <body>
     <input id="sbar" class="search" type="text" placeholder="Start searching here..."
-        style="margin-top: 50px; height: 10%;">
+        style="margin-top: 50px; height: 10%;" value="{{ query }}">
     <div class="menu-bar">
         <a id="sbutton" class="button"><i class=" fa fa-search"></i></a>
         <a href="/" class="button"><i class=" fa fa-home"></i></a>
         <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i> Bookmarks</a>
+        <a href="/settings" class="button"><i class=" fa fa-gear"></i> Settings</a>
         <a href="/history" class="button"><i class=" fa fa-history"></i> History</a>
     </div>
     <div class="search-results">
