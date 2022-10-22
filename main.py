@@ -30,13 +30,14 @@ async def home(request: Request):
 
 @app.get("/search", response_class=HTMLResponse)
 async def search_results(request: Request, query: str, results: int = 50):
+    time = datetime.now()
     if query != None:
         history.put(
             {
                 "query": query,
-                "time": f"{datetime.strftime('%A')}, {datetime.strftime('%B')} {datetime.strftime('%-d')}, {datetime.strftime('%Y')} {datetime.strftime('%-H')}:{datetime.strftime('%M')}:{datetime.strftime('%S')} {datetime.strftime('%p')}",
+                "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
             }
-        )  # Maybe also add time
+        )
         results = ddg(query, safesearch="Moderate", max_results=results)
         return pages.TemplateResponse(
             "search.html", {"request": request, "items": results, "query": query}
