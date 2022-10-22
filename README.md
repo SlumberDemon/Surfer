@@ -1,2 +1,2 @@
 # Surfer
- 🔍 Search the web
+ 🔍 Discover the web

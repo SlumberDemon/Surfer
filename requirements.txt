@@ -1,2 +1,4 @@
+duckduckgo_search
 fastapi
 jinja2
+deta
