@@ -5,5 +5,82 @@ Notes:
 - Premade themes: Ocean Blue, Hackermode, Material Dark (check discord for hex codes from subg), etc
 - Costome themes
 - Search result amount settings
+- disable history toggle botton
 
 -->
+<!DOCTYPE html>
+<html lang="en" active-theme="{{ settings['settings'][0]['theme'] }}">
+
+<head>
+    <title>Surfer</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/images/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/styles/style.css" />
+</head>
+
+<body>
+    <div class="menu-bar" style="margin-top: 20px;">
+        <a href="/" class="button"><i class=" fa fa-home"></i></a>
+        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i></a>
+        <a href="/history" class="button"><i class=" fa fa-history"></i></a>
+    </div>
+    <div class="settings">
+        <div class="content-card">
+            <div class="card-details">
+                <div class="card-header">
+                    <h2 id="ctitle" class="card-title" style="margin-bottom: 10px;">Settings</h2>
+                    <a id="history-mode-toggle" class="button"><i class=" fa fa-history"></i> {{
+                        settings["settings"][0]["history"] }}</a>
+                    <a id="clear-history-button" class="button"><i class=" fa fa-trash"></i> Clean
+                        History</a>
+                    <a id="clear-bookmarks-button" class="button"><i class=" fa fa-trash"></i>
+                        Clean Bookmarks</a>
+                </div>
+                <div class="card-bottom" style="margin-top: 10px;">
+                    <p class="card-summary">Themes</p>
+                    <select name="themes" id="themes" class="card-select">
+                        <optgroup label="Current">
+                            <option value="{{ settings['settings'][0]['theme'] }}" selected>{{
+                                settings["settings"][0]["theme"] }}</option>
+                        </optgroup>
+                        <optgroup label="Standard">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </optgroup>
+                        <optgroup label="Special">
+                            <option value="copia">Copia</option>
+                            <option value="forest">Forest</option>
+                            <option value="blueberry">Blueberry</option>
+                            <option value="garden">Garden</option>
+                            <option value="waves">Waves</option>
+                            <option value="the-silver-rivers">The Silver Rivers</option>
+                            <option value="ocean-blue">Ocean Blue</option>
+                            <option value="material-dark">Material Dark</option>
+                            <option value="hackermode">Hackermode</option>
+                            <option value="mustafa-solar-light">Mustafa Solar Light</option>
+                        </optgroup>
+                    </select>
+                    <p class="card-summary">Safesearch</p>
+                    <select name="safesearch" id="safesearch" class="card-select">
+                        <optgroup label="Current">
+                            <option value="{{ settings['settings'][0]['search'] }}" selected>{{
+                                settings["settings"][0]["search"] }}</option>
+                        </optgroup>
+                        <optgroup label="Standard">
+                            <option value="Moderate">Default</option>
+                            <option value="On">On</option>
+                            <option value="Off">Off</option>
+                        </optgroup>
+                    </select>
+                    <a id="ssave" class="button"><i class=" fa fa-save"></i> Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/scripts/settings.js"></script>
+
+</html>

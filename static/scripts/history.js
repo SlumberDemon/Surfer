@@ -7,10 +7,9 @@ function delay(time) {
 
 
 for (let button of searchButtons) {
-button.addEventListener("click", () => {
-    let query = document.getElementById("card-title")
+button.addEventListener("click",  () => {
     button.innerHTML = `<i class="fa fa-search"></i> Searching...`;
-    window.location.href = `/search?query=${query.innerHTML}`;
+    window.location.href = `/search?query=${button.id}`;
 });
 }
 

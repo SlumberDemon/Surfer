@@ -1,7 +1,119 @@
+/* Standard */
+
+:root[active-theme="light"] {
+    --colour1: #F6F8FA;
+    --colour2: #FFFFFF;
+    --colour3: #24292F;
+    --colour4: #979BA3;
+    --colour5: #989A9C;
+    --colour6: #24292F;
+}
+
+:root[active-theme="dark"] {
+    --colour1: #02040B;
+    --colour2: #0D1116;
+    --colour3: #171C22;
+    --colour4: #979BA3;
+    --colour5: #989A9C;
+    --colour6: #6A747F;
+}
+
+/* Special */
+
+:root[active-theme="ocean-blue"] {
+    --colour1: #1106D6;
+    --colour2: #0758FA;
+    --colour3: #6905ED;
+    --colour4: #B006D6;
+    --colour5: #FA009A;
+    --colour6: #FFFFFF;
+}
+
+:root[active-theme="copia"] {
+    --colour1: #571845;
+    --colour2: #900C3E;
+    --colour3: #C70039;
+    --colour4: #FF5733;
+    --colour5: #FFC300;
+    --colour6: #FFFFFF;
+}
+
+:root[active-theme="forest"] {
+    --colour1: #1E2735;
+    --colour2: #162E3B;
+    --colour3: #054C5A;
+    --colour4: #005F60;
+    --colour5: #FE8C03;
+    --colour6: #FFFFFF;
+}
+
+:root[active-theme="hackermode"] {
+    --colour1: #000000;
+    --colour2: #02FF00;
+    --colour3: #000000;
+    --colour4: #02FF00;
+    --colour5: #000000;
+    --colour6: #02FF00;
+}
+
+:root[active-theme="material-dark"] {
+    --colour1: #121212;
+    --colour2: rgba(255, 255, 255, 0.223);
+    --colour3: rgba(255, 255, 255, 0.386);
+    --colour4: rgba(255,255,255,0.1);
+    --colour5: #000000;
+    --colour6: rgba(255, 255, 255, 0.418);
+}
+
+:root[active-theme="mustafa-solar-light"] {
+    --colour1: #F6F8FA;
+    --colour2: #FFFFFF;
+    --colour3: #dadadafb;
+    --colour4: #a8a8a8;
+    --colour5: #989A9C;
+    --colour6: #565656;
+}
+
+:root[active-theme="blueberry"] {
+    --colour1: #B287FF;
+    --colour2: #847BE8;
+    --colour3: #95A9FF;
+    --colour4: #7BACE8;
+    --colour5: #87DCFF;
+    --colour6: #FFFFFF;
+}
+
+:root[active-theme="garden"] {
+    --colour1: #3FA689;
+    --colour2: #038C5A;
+    --colour3: #D9A87E;
+    --colour4: #BF8969;
+    --colour5: #593325;
+    --colour6: #FFFFFF;
+}
+
+:root[active-theme="waves"] {
+    --colour1: #1F8C8C;
+    --colour2: #24BFA3;
+    --colour3: #80BFB4;
+    --colour4: #B0D9CD;
+    --colour5: #F2EBDC;
+    --colour6: #FFFFFF;
+}
+
+:root[active-theme="the-silver-rivers"] {
+    --colour1: #0A0B0D;
+    --colour2: #1B1F26;
+    --colour3: #3B4B59;
+    --colour4: #6D7E8C;
+    --colour5: #B4CBD9;
+    --colour6: #FFFFFF;
+}
+
 body {
     font-family: "Open Sans", sans-serif;
-    color: #FA009A;
-    background-color: #1106D6;
+    color: var(--colour5);
+    background-color: var(--colour1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,8 +125,8 @@ body {
 }
 
 .button {
-    color: #FA009A;
-    background-color: #0758FA;
+    color: var(--colour5);
+    background-color: var(--colour2);
     text-decoration: none;
     font-size: 16px;
     padding: 6px 20px;
@@ -27,8 +139,8 @@ body {
 }
 
 .button:hover {
-    background-color: #B006D6;
-    color: white;
+    background-color: var(--colour4);
+    color: var(--colour6);
 }
 
 .search {
@@ -39,16 +151,16 @@ body {
     padding: 4px 24px;
     border-radius: 10px;
     text-size-adjust: 10px;
-    background-color: #0758FA;
-    border: 2px solid #6905ED;
+    background-color: var(--colour2);
+    border: 2px solid var(--colour3);
     align-self: center;
     justify-self: center;
-    color: white;
+    color: var(--colour6);
     margin-bottom: 0.5%;
 }
 
 .search::placeholder {
-    color: #6905ED;
+    color: var(--colour3);
     font-style: italic;
 }
 
@@ -76,13 +188,12 @@ body {
     border: 1px solid;
     padding: 8px 20px;
     border-radius: 20px;
-    border-color: #B006D6;
-    background-color: #6905ED;
-    box-shadow: 0 0 4px #B006D6;
+    border-color: var(--colour4);
+    background-color: var(--colour3);
+    box-shadow: 0 0 4px var(--colour4);
     flex-direction: row;
     display: flex;
     margin-top: auto;
-    color: #B006D6;
     margin-bottom: 10px;
 }
 
@@ -94,6 +205,27 @@ body {
     height: fit-content;
 }
 
+.card-header > a {
+    text-decoration: none;
+}
+
 .card-bottom {
     margin-bottom: 5px;
+}
+
+.card-select {
+    background-color: var(--colour2);
+    border: 2px solid var(--colour3);
+    color: var(--colour5);
+    font-size: 16px;
+    padding: 6px 20px;
+    border-radius: 10px;
+}
+
+.card-title {
+    color: var(--colour5);
+}
+
+.card-summary {
+    color: var(--colour4);
 }

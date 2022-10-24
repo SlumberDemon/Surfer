@@ -1,14 +1,5 @@
-<!--Placeholder
-
-Notes:
-- shows history
-- clear history botton
-- disable history toggle botton
-
--->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" active-theme="{{ settings['settings'][0]['theme'] }}">
 
 <head>
     <title>Surfer</title>
@@ -23,19 +14,19 @@ Notes:
 <body>
     <div class="menu-bar" style="margin-top: 20px;">
         <a href="/" class="button"><i class=" fa fa-home"></i></a>
-        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i> Bookmarks</a>
-        <a href="/settings" class="button"><i class=" fa fa-gear"></i> Settings</a>
+        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i></a>
+        <a href="/settings" class="button"><i class=" fa fa-gear"></i></a>
     </div>
     <div class="history">
         {% for item in items %}
         <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
-                    <h2 id="card-title" style="color: #FA009A;">{{ item["query"] }}</h2>
-                    <p id="card-summary">{{ item["time"] }}</p>
+                    <h2 id="ctitle" class="card-title">{{ item["query"] }}</h2>
+                    <p class="card-summary" id="csummary">{{ item["time"] }}</p>
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">
-                    <a id="{{ item['url'] }}" class="button search-button"><i class=" fa fa-search"></i></a>
+                    <a id="{{ item['query'] }}" class="button search-button"><i class=" fa fa-search"></i></a>
                     <a id="{{ item['key'] }}" class="button remove-button"><i class=" fa fa-trash"></i></a>
                 </div>
             </div>

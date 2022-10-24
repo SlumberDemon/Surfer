@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" active-theme="{{ settings['settings'][0]['theme'] }}">
 
 <head>
     <title>Surfer</title>
@@ -14,12 +14,12 @@
 <body>
     <h1 class="title">S U R F E R</h1>
     <h2 class="tagline">Discover the web</h2>
-    <input id="sbar" class="search" type="text" placeholder="Start searching here..." required>
+    <input id="sbar" class="search" type="text" placeholder="Start searching here..." autocomplete="off">
     <div class="menu-bar">
         <a id="sbutton" class="button"><i class=" fa fa-search"></i></a>
-        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i> Bookmarks</a>
-        <a href="/settings" class="button"><i class=" fa fa-gear"></i> Settings</a>
-        <a href="/history" class="button"><i class=" fa fa-history"></i> History</a>
+        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i></a>
+        <a href="/settings" class="button"><i class=" fa fa-gear"></i></a>
+        <a href="/history" class="button"><i class=" fa fa-history"></i></a>
     </div>
 </body>
 <script src="/static/scripts/script.js"></script>

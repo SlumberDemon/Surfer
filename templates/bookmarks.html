@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" active-theme="{{ settings['settings'][0]['theme'] }}">
 
 <head>
     <title>Surfer</title>
@@ -14,18 +14,18 @@
 <body>
     <div class="menu-bar" style="margin-top: 20px;">
         <a href="/" class="button"><i class=" fa fa-home"></i></a>
-        <a href="/settings" class="button"><i class=" fa fa-gear"></i> Settings</a>
-        <a href="/history" class="button"><i class=" fa fa-history"></i> History</a>
+        <a href="/settings" class="button"><i class=" fa fa-gear"></i></a>
+        <a href="/history" class="button"><i class=" fa fa-history"></i></a>
     </div>
     <div class="bookmarks">
         {% for item in items %}
         <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
-                    <h2 id="card-title" style="color: #FA009A;">{{ item["title"] }}</h2>
+                    <h2 class="card-title" id="ctitle">{{ item["title"] }}</h2>
                     <details>
                         <summary>Show Info</summary>
-                        <p id="card-summary">{{ item["description"][0] }}</p>
+                        <p id="csummary" class="card-summary">{{ item["description"][0] }}</p>
                     </details>
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">

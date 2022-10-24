@@ -10,6 +10,7 @@ app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
 pages = Jinja2Templates(directory="templates")
 
+config = Base("config")
 history = Base("history")
 bookmarks = Base("bookmarks")
 
@@ -20,27 +21,63 @@ class NoCacheFileResponse(FileResponse):
         self.headers["Cache-Control"] = "no-cache"
 
 
+async def settings_check():
+    data = config.get("settings")
+    if not data:
+        data = config.put(
+            {
+                "settings": [
+                    {"theme": "ocean-blue", "search": "Moderate", "history": True}
+                ]
+            },
+            "settings",
+        )
+    return data
+
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return pages.TemplateResponse(
         "index.html",
-        {"request": request},
+        {"request": request, "settings": await settings_check()},
     )
 
 
 @app.get("/search", response_class=HTMLResponse)
 async def search_results(request: Request, query: str, results: int = 50):
+    data = await settings_check()
     time = datetime.now()
     if query != None:
-        history.put(
-            {
-                "query": query,
-                "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
-            }
+        if data["settings"][0]["history"] == True:
+            history.put(
+                {
+                    "query": query,
+                    "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
+                }
+            )
+        results = ddg(
+            query, safesearch=data["settings"][0]["search"], max_results=results
         )
-        results = ddg(query, safesearch="Moderate", max_results=results)
+        id = 1
+        items = []
+        for item in results:
+            items.append(
+                {
+                    "title": item["title"],
+                    "body": item["body"],
+                    "href": item["href"],
+                    "id": id,
+                }
+            )
+            id += 1
         return pages.TemplateResponse(
-            "search.html", {"request": request, "items": results, "query": query}
+            "search.html",
+            {
+                "request": request,
+                "items": items,
+                "query": query,
+                "settings": data,
+            },
         )
     else:
         return {"message": "404"}
@@ -66,7 +103,8 @@ async def bookmarks_page(request: Request):
         res = bookmarks.fetch(last=res.last)
         items += res.items
     return pages.TemplateResponse(
-        "bookmarks.html", {"request": request, "items": items}
+        "bookmarks.html",
+        {"request": request, "items": items, "settings": await settings_check()},
     )
 
 
@@ -83,7 +121,60 @@ async def history_page(request: Request):
     while res.last:
         res = history.fetch(last=res.last)
         items += res.items
-    return pages.TemplateResponse("history.html", {"request": request, "items": items})
+    return pages.TemplateResponse(
+        "history.html",
+        {"request": request, "items": items, "settings": await settings_check()},
+    )
+
+
+@app.get("/settings")
+async def settings_page(request: Request):
+    return pages.TemplateResponse(
+        "settings.html", {"request": request, "settings": await settings_check()}
+    )
+
+
+@app.patch("/settings")
+async def settings_update(theme: str = None, search: str = None, history: bool = None):
+    data = config.get("settings")
+    if theme == None:
+        theme = data["settings"][0]["theme"]
+    else:
+        theme = theme
+    if search == None:
+        search = data["settings"][0]["search"]
+    else:
+        search = search
+    if history == None:
+        history = data["settings"][0]["history"]
+    else:
+        history = history
+    config.put(
+        {"settings": [{"theme": theme, "search": search, "history": history}]},
+        "settings",
+    )
+    return {"message": "success"}
+
+
+@app.delete("/settings")
+async def settings_delete(type: str):
+    # Type: bookmarks/history
+    base = Base(type)
+    res = base.fetch()
+    items = res.items
+    while res.last:
+        res = bookmarks.fetch(last=res.last)
+        items += res.items
+
+    for i in items:
+        base.delete(i["key"])
+    return {"message": "success"}
+
+
+@app.get("/settings/data")
+async def settings_data():
+    data = config.get("settings")
+    return data
 
 
 @app.get("/static/{path:path}")

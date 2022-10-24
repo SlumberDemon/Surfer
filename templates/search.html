@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" active-theme="{{ settings['settings'][0]['theme'] }}">
 
 <head>
     <title>Surfer</title>
@@ -13,25 +13,27 @@
 
 <body>
     <input id="sbar" class="search" type="text" placeholder="Start searching here..."
-        style="margin-top: 50px; height: 10%;" value="{{ query }}" required>
-    <div class="menu-bar">
+        style="margin-top: 50px; height: 10%;" value="{{ query }}" autocomplete="off">
+    <div class=" menu-bar">
         <a id="sbutton" class="button"><i class=" fa fa-search"></i></a>
         <a href="/" class="button"><i class=" fa fa-home"></i></a>
-        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i> Bookmarks</a>
-        <a href="/settings" class="button"><i class=" fa fa-gear"></i> Settings</a>
-        <a href="/history" class="button"><i class=" fa fa-history"></i> History</a>
+        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i></a>
+        <a href="/settings" class="button"><i class=" fa fa-gear"></i></a>
+        <a href="/history" class="button"><i class=" fa fa-history"></i></a>
     </div>
     <div class="search-results">
         {% for item in items %}
         <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
-                    <h2 id="card-title" style="color: #FA009A;">{{ item["title"] }}</h2>
-                    <p id="card-summary">{{ item["body"] }}</p>
+                    <a href="{{ item['href'] }}">
+                        <h2 class="card-title" id="{{ item['id'] }}ctitle">{{ item["title"] }}</h2>
+                    </a>
+                    <p class="card-summary" id="{{ item['id'] }}csummary">{{ item["body"] }}</p>
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">
-                    <a href="{{ item['href'] }}" class="button"><i class=" fa fa-link"></i> Visit</a>
-                    <a id="{{ item['href'] }}" class="button save-button"><i class=" fa fa-bookmark"></i></a>
+                    <a id="{{ item['id'] }}" value="{{ item['href'] }}" class="button save-button"><i
+                            class=" fa fa-bookmark"></i></a>
                 </div>
             </div>
         </div>
