@@ -110,6 +110,93 @@
     --colour6: #FFFFFF;
 }
 
+/* CSS */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .title {
+        font-size: 60px;
+    }
+    .search {
+        width: 300px;
+        height: 20px;
+    }
+    .content-card {
+        width: 100px;
+    }
+    .menu-bar {
+        margin-top: 10px;
+    }
+} 
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .title {
+        font-size: 100px;
+    }
+    .search {
+        width: 300px;
+        height: 20px;
+    }
+    .content-card {
+        width: 300px;
+    }
+    .menu-bar {
+        margin-top: 10px;
+    }
+} 
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .title {
+        font-size: 100px;
+    }
+    .search {
+        width: 500px;
+        height: 40px;
+    }
+    .content-card {
+        width: 500px;
+    }
+    .menu-bar {
+        margin-top: 10px;
+    }
+} 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .title {
+        font-size: 150px;
+    }
+    .search {
+        width: 600px;
+        height: 40px;
+    }
+    .content-card {
+        width: 600px;
+    }
+    .menu-bar {
+        margin-top: 5px;
+    }
+} 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .title {
+        font-size: 150px;
+    }
+    .search {
+        width: 600px;
+        height: 40px;
+    }
+    .content-card {
+        width: 600px;
+    }
+    .menu-bar {
+        margin-top: 5px;
+    }
+}
+
 body {
     font-family: "Open Sans", sans-serif;
     color: var(--colour5);
@@ -145,8 +232,6 @@ body {
 
 .search {
     margin: auto;
-    width: 600px;
-    height: 60px;
     font-size: 30px;
     padding: 4px 24px;
     border-radius: 10px;
@@ -165,7 +250,6 @@ body {
 }
 
 .title {
-    font-size: 150px;
     margin-bottom: 0%;
 }
 
@@ -176,7 +260,6 @@ body {
 }
 
 .menu-bar {
-    margin-top: 5px;
     margin-bottom: 15px;
 }
 
