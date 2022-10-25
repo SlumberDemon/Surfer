@@ -226,6 +226,7 @@ body {
 }
 
 .search {
+    transition: 0.1s linear;
     margin: auto;
     font-size: 30px;
     padding: 4px 24px;

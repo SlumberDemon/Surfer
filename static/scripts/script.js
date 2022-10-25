@@ -12,3 +12,19 @@ searchInput.addEventListener("keypress", function(event) {
         window.location.href = `/search?query=${searchInput.value}`;
     }
 });
+
+
+let item = document.body
+
+document.addEventListener('keydown', event => {
+    if (event.code === 'ArrowUp') {
+    item.setAttribute("style", "filter: blur(5px);")
+    searchInput.setAttribute("style", "filter: blur(0px);" )
+    }
+})
+
+document.addEventListener('keydown', event => {
+    if (event.code === 'ArrowDown') {
+    item.setAttribute("style", "filter: blur(0px);")
+    }
+})
