@@ -1,4 +1,4 @@
-/* Standard */
+/* Themes */
 
 :root[active-theme="light"] {
     --colour1: #F6F8FA;
@@ -17,8 +17,6 @@
     --colour5: #989A9C;
     --colour6: #6A747F;
 }
-
-/* Special */
 
 :root[active-theme="ocean-blue"] {
     --colour1: #1106D6;
@@ -58,10 +56,10 @@
 
 :root[active-theme="material-dark"] {
     --colour1: #121212;
-    --colour2: rgba(255, 255, 255, 0.223);
-    --colour3: rgba(255, 255, 255, 0.386);
-    --colour4: rgba(255,255,255,0.1);
-    --colour5: #000000;
+    --colour2: #404040;
+    --colour3: #2A2A2A;
+    --colour4: #B40E86;
+    --colour5: #FF009A;
     --colour6: rgba(255, 255, 255, 0.418);
 }
 
@@ -112,7 +110,6 @@
 
 /* CSS */
 
-/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .title {
         font-size: 60px;
@@ -129,7 +126,6 @@
     }
 } 
   
-  /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .title {
         font-size: 100px;
@@ -146,7 +142,6 @@
     }
 } 
   
-  /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .title {
         font-size: 100px;
@@ -163,7 +158,6 @@
     }
 } 
   
-  /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .title {
         font-size: 150px;
@@ -265,7 +259,6 @@ body {
 
 
 .content-card {
-    width: 600px;
     height: fit-content;
     overflow: hidden;
     border: 1px solid;
