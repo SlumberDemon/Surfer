@@ -118,12 +118,18 @@
     .search {
         width: 300px;
         height: 20px;
+        font-size: 20px;
     }
     .content-card {
         width: 300px;
     }
     .menu-bar {
         margin-top: 10px;
+    }
+    .content-card.settings {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
     }
 } 
   
@@ -134,6 +140,7 @@
     .search {
         width: 300px;
         height: 20px;
+        font-size: 20px;
     }
     .content-card {
         width: 300px;
@@ -150,6 +157,7 @@
     .search {
         width: 500px;
         height: 40px;
+        font-size: 30px;
     }
     .content-card {
         width: 500px;
@@ -166,6 +174,7 @@
     .search {
         width: 600px;
         height: 40px;
+        font-size: 30px;
     }
     .content-card {
         width: 600px;
@@ -214,10 +223,10 @@ body {
     padding: 6px 20px;
     border-radius: 10px;
     transition: 0.1s linear;
+    margin-bottom: 50px;
     user-select: none;
     cursor: pointer;
     border: none;
-    margin-bottom: 50px;
 }
 
 .button:hover {
@@ -226,9 +235,9 @@ body {
 }
 
 .search {
+    white-space: nowrap;
     transition: 0.1s linear;
     margin: auto;
-    font-size: 30px;
     padding: 4px 24px;
     border-radius: 10px;
     text-size-adjust: 10px;
@@ -275,6 +284,11 @@ body {
     margin-bottom: 10px;
 }
 
+.content-card.settings {
+    width: auto;
+    white-space: nowrap;
+}
+
 .card-details {
     text-align: left;
     display: flex;
@@ -292,9 +306,10 @@ body {
 }
 
 .card-select {
+    cursor: pointer;
     background-color: var(--colour2);
-    border: 2px solid var(--colour3);
     color: var(--colour5);
+    border: none;
     font-size: 16px;
     padding: 6px 20px;
     border-radius: 10px;
@@ -306,4 +321,14 @@ body {
 
 .card-summary {
     color: var(--colour4);
+}
+
+.content-control {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }

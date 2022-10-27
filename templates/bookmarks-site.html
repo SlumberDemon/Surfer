@@ -12,36 +12,36 @@
 </head>
 
 <body>
-    <input id="sbar" class="search" type="text" placeholder="Start searching here..."
-        style="margin-top: 50px; height: 10%;" value="{{ query }}" autocomplete="off">
-    <div class=" menu-bar">
+    <div class="menu-bar" style="margin-top: 20px;">
         <a href="/" class="button"><i class=" fa fa-home"></i></a>
-        <a id="sbutton" class="button"><i class=" fa fa-search"></i></a>
-        <a id="ibutton" class="button"><i class=" fa fa-image"></i></a>
-        <a href="/bookmarks?typ=site" class="button"><i class=" fa fa-bookmark"></i></a>
         <a href="/history" class="button"><i class=" fa fa-history"></i></a>
         <a href="/settings" class="button"><i class=" fa fa-gear"></i></a>
     </div>
-    <div class="search-results">
+    <div class="bookmarks">
+        <div class="content-control">
+            <a href="/bookmarks?typ=site" class="button"><i class=" fa fa-bookmark"></i> Sites</a>
+            <a href="/bookmarks?typ=image" class="button""><i class=" fa fa-image"></i> Images</a>
+        </div>
         {% for item in items %}
         <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
-                    <a href="{{ item['href'] }}">
-                        <h2 class="card-title" id="{{ item['id'] }}ctitle">{{ item["title"] }}</h2>
-                    </a>
-                    <p class="card-summary" id="{{ item['id'] }}csummary">{{ item["body"] }}</p>
+                    <h2 class="card-title" id="ctitle">{{ item["title"] }}</h2>
+                    <details>
+                        <summary>Show Info</summary>
+                        <p id="csummary" class="card-summary">{{ item["content"][0] }}</p>
+                    </details>
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">
-                    <a id="{{ item['id'] }}~{{ item['href'] }}" class="button save-button"><i
-                            class=" fa fa-bookmark"></i></a>
+                    <a href="{{ item['url'] }}" class="button"><i class=" fa fa-link"></i> Visit</a>
+                    <a id="{{ item['url'] }}" class="button share-button"><i class=" fa fa-share-alt"></i></a>
+                    <a id="{{ item['key'] }}" class="button remove-button"><i class=" fa fa-trash"></i></a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </body>
-<script src="/static/scripts/script.js"></script>
-<script src="/static/scripts/search.js"></script>
+<script src="/static/scripts/bookmark.js"></script>
 
 </html>

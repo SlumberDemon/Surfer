@@ -27,13 +27,17 @@
         <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
-                    <a href="{{ item['href'] }}">
+                    <a href="{{ item['image'] }}">
                         <h2 class="card-title" id="{{ item['id'] }}ctitle">{{ item["title"] }}</h2>
                     </a>
-                    <p class="card-summary" id="{{ item['id'] }}csummary">{{ item["body"] }}</p>
+                    <p class="card-summary" id="{{ item['id'] }}csummary">Source: {{ item["source"] }}</p>
+                    <details>
+                        <summary>Show Image</summary>
+                        <img class="card-image" src="{{ item['image'] }}" alt="Image">
+                    </details>
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">
-                    <a id="{{ item['id'] }}~{{ item['href'] }}" class="button save-button"><i
+                    <a id="{{ item['id'] }}~{{ item['image'] }}" class="button image-button"><i
                             class=" fa fa-bookmark"></i></a>
                 </div>
             </div>
@@ -42,6 +46,6 @@
     </div>
 </body>
 <script src="/static/scripts/script.js"></script>
-<script src="/static/scripts/search.js"></script>
+<script src="/static/scripts/image.js"></script>
 
 </html>

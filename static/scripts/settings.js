@@ -42,7 +42,7 @@ historyButton.addEventListener("click", () => {
     fetch(`/settings?type=history`, { method: "DELETE" }).then(() => {
         historyButton.innerHTML = `<i class="fa fa-check"></i>`
         delay(250).then(() => {
-            historyButton.innerHTML = `<i class="fa fa-trash"></i>  Clean History`
+            historyButton.innerHTML = `<i class="fa fa-trash"></i> History`
     });
 })
 })
@@ -51,7 +51,7 @@ bookmarkButton.addEventListener("click", () => {
     fetch(`/settings?type=bookmarks`, { method: "DELETE" }).then(() => {
         bookmarkButton.innerHTML = `<i class="fa fa-check"></i>`
         delay(250).then(() => {
-            bookmarkButton.innerHTML = `<i class="fa fa-trash"></i>  Clean Bookmarks`
+            bookmarkButton.innerHTML = `<i class="fa fa-trash"></i> Bookmarks`
     });
 })
 })

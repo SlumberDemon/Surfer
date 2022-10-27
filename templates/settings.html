@@ -20,20 +20,18 @@ Notes:
 <body>
     <div class="menu-bar" style="margin-top: 20px;">
         <a href="/" class="button"><i class=" fa fa-home"></i></a>
-        <a href="/bookmarks" class="button"><i class=" fa fa-bookmark"></i></a>
+        <a href="/bookmarks?typ=site" class="button"><i class=" fa fa-bookmark"></i></a>
         <a href="/history" class="button"><i class=" fa fa-history"></i></a>
     </div>
     <div class="settings">
-        <div class="content-card">
+        <div class="content-card settings">
             <div class="card-details">
                 <div class="card-header">
                     <h2 id="ctitle" class="card-title" style="margin-bottom: 10px;">Settings</h2>
                     <a id="history-mode-toggle" class="button"><i class=" fa fa-history"></i> {{
                         settings["settings"][0]["history"] }}</a>
-                    <a id="clear-history-button" class="button"><i class=" fa fa-trash"></i> Clean
-                        History</a>
-                    <a id="clear-bookmarks-button" class="button"><i class=" fa fa-trash"></i>
-                        Clean Bookmarks</a>
+                    <a id="clear-history-button" class="button"><i class=" fa fa-trash"></i> History</a>
+                    <a id="clear-bookmarks-button" class="button"><i class=" fa fa-trash"></i> Bookmarks</a>
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">
                     <p class="card-summary">Themes</p>

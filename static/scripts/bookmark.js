@@ -1,5 +1,6 @@
 let deleteButtons = document.getElementsByClassName("remove-button");
 let shareButtons = document.getElementsByClassName("share-button");
+let selectMenu = document.getElementById("booktype")
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -27,3 +28,7 @@ for (let button of shareButtons) {
             });
         });
 }
+
+selectMenu.addEventListener("click", () => {
+    window.location.href = `/bookmarks?typ=image`;
+})

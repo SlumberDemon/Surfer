@@ -1,7 +1,7 @@
 from deta import Base
 from datetime import datetime
-from duckduckgo_search import ddg
 from fastapi import FastAPI, Request
+from duckduckgo_search import ddg, ddg_images
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
@@ -43,11 +43,49 @@ async def home(request: Request):
     )
 
 
+@app.get("/image", response_class=HTMLResponse)
+async def image_results(request: Request, query: str, results: int = 25):
+    data = await settings_check()
+    time = datetime.now()
+    try:
+        if data["settings"][0]["history"] == True:
+            history.put(
+                {
+                    "query": query,
+                    "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
+                }
+            )
+        results = ddg_images(
+            query, safesearch=data["settings"][0]["search"], max_results=results
+        )
+        id = 1
+        items = []
+        for item in results:
+            items.append(
+                {
+                    "title": item["title"],
+                    "image": item["image"],
+                    "thumbnail": item["thumbnail"],
+                    "height": item["height"],
+                    "width": item["width"],
+                    "source": item["source"],
+                    "id": id,
+                }
+            )
+            id += 1
+        return pages.TemplateResponse(
+            "image.html",
+            {"request": request, "items": items, "query": query, "settings": data},
+        )
+    except:
+        pass
+
+
 @app.get("/search", response_class=HTMLResponse)
 async def search_results(request: Request, query: str, results: int = 50):
     data = await settings_check()
     time = datetime.now()
-    if query != None:
+    try:
         if data["settings"][0]["history"] == True:
             history.put(
                 {
@@ -72,20 +110,15 @@ async def search_results(request: Request, query: str, results: int = 50):
             id += 1
         return pages.TemplateResponse(
             "search.html",
-            {
-                "request": request,
-                "items": items,
-                "query": query,
-                "settings": data,
-            },
+            {"request": request, "items": items, "query": query, "settings": data},
         )
-    else:
-        return {"message": "404"}
+    except:
+        return {"message": "An error occurred"}
 
 
 @app.post("/bookmark")
-async def bookmark_add(title: str, description: str, url: str):
-    bookmarks.put({"title": title, "description": [description], "url": url})
+async def bookmark_add_site(title: str, content: str, url: str, typ: str):
+    bookmarks.put({"title": title, "content": [content], "url": url, "type": typ})
     return {"message": "success"}
 
 
@@ -96,15 +129,20 @@ async def bookmark_remove(id: str):
 
 
 @app.get("/bookmarks")
-async def bookmarks_page(request: Request):
+async def bookmarks_page(request: Request, typ: str):
     res = bookmarks.fetch()
     items = res.items
     while res.last:
         res = bookmarks.fetch(last=res.last)
         items += res.items
+    list = []
+    for item in items:
+        if item["type"] == typ:
+            list.append(item)
+
     return pages.TemplateResponse(
-        "bookmarks.html",
-        {"request": request, "items": items, "settings": await settings_check()},
+        f"bookmarks-{typ}.html",
+        {"request": request, "items": list, "settings": await settings_check()},
     )
 
 
