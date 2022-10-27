@@ -1,5 +1,8 @@
 # Your personal search engine
 
+![Home](https://sleep.deta.dev/cdn/surfer.png)
+> Theme: Ocean Blue
+
 ## Features
 - Site/Image Bookmarks
 - History (Toggable)
