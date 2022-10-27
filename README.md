@@ -3,6 +3,7 @@
 ## Features
 - Site/Image Bookmarks
 - History (Toggable)
+- Moblie supported
 - Safesearch
 - Themes (12)
 
