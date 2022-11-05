@@ -44,6 +44,7 @@ async def integrations_check():
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
+    await integrations_check()
     return pages.TemplateResponse(
         "index.html",
         {"request": request, "settings": await settings_check()},
@@ -174,13 +175,12 @@ async def history_page(request: Request):
 
 @app.get("/settings")
 async def settings_page(request: Request):
-    integrations = await integrations_check()
     return pages.TemplateResponse(
         "settings.html",
         {
             "request": request,
             "settings": await settings_check(),
-            "integrations": integrations,
+            "integrations": await integrations_check(),
         },
     )
 
