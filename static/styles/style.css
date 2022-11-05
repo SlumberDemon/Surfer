@@ -333,10 +333,6 @@ body {
     font-style: italic;
 }
 
-.card-inteput:hover {
-    filter: blur(0px);
-}
-
 .card-title {
     color: var(--colour5);
 }

@@ -35,6 +35,13 @@ async def settings_check():
     return data
 
 
+async def integrations_check():
+    data = config.get("integrations")
+    if not data:
+        config.put({"settings": [{"blackhole": ""}]}, "integrations")
+    return data
+
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return pages.TemplateResponse(
@@ -167,13 +174,12 @@ async def history_page(request: Request):
 
 @app.get("/settings")
 async def settings_page(request: Request):
-    integrations = config.get("integrations")
     return pages.TemplateResponse(
         "settings.html",
         {
             "request": request,
             "settings": await settings_check(),
-            "integrations": integrations,
+            "integrations": await integrations_check(),
         },
     )
 
