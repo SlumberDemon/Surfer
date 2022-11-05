@@ -4,11 +4,17 @@
 > Theme: Ocean Blue
 
 ## Features
+- Cross space app integrations
 - Site/Image Bookmarks
 - History (Toggable)
 - Moblie supported
-- Safesearch
 - Themes (12)
+- Safesearch
+
+## Integrations
+
+#### [Black Hole](https://alpha.deta.space/discovery/@mikhailsdv/black_hole-3kf)
+- Send images directly to your white hole
 
 ## Themes
 

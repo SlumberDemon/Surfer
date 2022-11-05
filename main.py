@@ -167,8 +167,14 @@ async def history_page(request: Request):
 
 @app.get("/settings")
 async def settings_page(request: Request):
+    integrations = config.get("integrations")
     return pages.TemplateResponse(
-        "settings.html", {"request": request, "settings": await settings_check()}
+        "settings.html",
+        {
+            "request": request,
+            "settings": await settings_check(),
+            "integrations": integrations,
+        },
     )
 
 
@@ -212,6 +218,21 @@ async def settings_delete(type: str):
 @app.get("/settings/data")
 async def settings_data():
     data = config.get("settings")
+    return data
+
+
+# New integration system currently only supports one app, once more apps will be integrated this system will be improved and expaneded!
+
+
+@app.post("/integration/blackhole")
+async def blackhole_integration(url: str):
+    config.put({"settings": [{"blackhole": url}]}, "integrations")
+    return {"message": "success"}
+
+
+@app.get("/integration/blackhole")
+async def blackhole_integration():
+    data = config.get("integrations")
     return data
 
 

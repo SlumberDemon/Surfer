@@ -107,7 +107,6 @@
     --colour5: #B4CBD9;
     --colour6: #FFFFFF;
 }
-
 /* CSS */
 
 @media only screen and (max-width: 600px) {
@@ -117,8 +116,8 @@
     }
     .search {
         width: 300px;
-        height: 20px;
-        font-size: 20px;
+        height: 25px;
+        font-size: 25px;
     }
     .content-card {
         width: 300px;
@@ -135,12 +134,13 @@
   
 @media only screen and (min-width: 600px) {
     .title {
+        margin-top: 25px;
         font-size: 100px;
     }
     .search {
         width: 300px;
-        height: 20px;
-        font-size: 20px;
+        height: 25px;
+        font-size: 25px;
     }
     .content-card {
         width: 300px;
@@ -192,6 +192,7 @@
     .search {
         width: 600px;
         height: 40px;
+        font-size: 30px;
     }
     .content-card {
         width: 600px;
@@ -220,8 +221,8 @@ body {
     background-color: var(--colour2);
     text-decoration: none;
     font-size: 16px;
-    padding: 6px 20px;
-    border-radius: 10px;
+    padding: 8px 20px;
+    border-radius: 8px;
     transition: 0.1s linear;
     margin-bottom: 50px;
     user-select: none;
@@ -239,7 +240,7 @@ body {
     transition: 0.1s linear;
     margin: auto;
     padding: 4px 24px;
-    border-radius: 10px;
+    border-radius: 8px;
     text-size-adjust: 10px;
     background-color: var(--colour2);
     border: 2px solid var(--colour3);
@@ -272,9 +273,9 @@ body {
 .content-card {
     height: fit-content;
     overflow: hidden;
-    border: 1px solid;
-    padding: 8px 20px;
-    border-radius: 20px;
+    border: 0.5px solid;
+    padding: 10px 15px;
+    border-radius: 8px;
     border-color: var(--colour4);
     background-color: var(--colour3);
     box-shadow: 0 0 4px var(--colour4);
@@ -312,7 +313,28 @@ body {
     border: none;
     font-size: 16px;
     padding: 6px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
+}
+
+.card-inteput {
+    border: 2px solid var(--colour3);
+    transition: 0.1s linear;
+    cursor: pointer;
+    background-color: var(--colour2);
+    color: var(--colour5);
+    border: none;
+    font-size: 15px;
+    padding: 8px 20px;
+    border-radius: 8px;
+}
+
+.card-inteput::placeholder {
+    color: var(--colour3);
+    font-style: italic;
+}
+
+.card-inteput:hover {
+    filter: blur(0px);
 }
 
 .card-title {

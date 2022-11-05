@@ -33,7 +33,7 @@ Notes:
                     <a id="clear-history-button" class="button"><i class=" fa fa-trash"></i> History</a>
                     <a id="clear-bookmarks-button" class="button"><i class=" fa fa-trash"></i> Bookmarks</a>
                 </div>
-                <div class="card-bottom" style="margin-top: 10px;">
+                <div class="card-middle" style="margin-top: 10px;">
                     <p class="card-summary">Themes</p>
                     <select name="themes" id="themes" class="card-select">
                         <optgroup label="Current">
@@ -71,7 +71,17 @@ Notes:
                             <option value="Off">Off</option>
                         </optgroup>
                     </select>
+                </div>
+                <div class="card-middle" style="margin-top: 10px;">
+                    <h2 id="ctitle" class="card-title" style="margin-bottom: 5px;">Integrations</h2>
+                    <p class="card-summary">Black Hole</p>
+                    <input id="ibar" class="card-inteput" type="text" placeholder="Integration url"
+                        value="{{ integrations['settings'][0]['blackhole'] }}" autocomplete="off"
+                        style="margin-bottom: 10px;">
+                </div>
+                <div class="card-bottom" style="margin-top: 10px;">
                     <a id="ssave" class="button"><i class=" fa fa-save"></i> Save</a>
+                    <a id="sreset" class="button"><i class=" fa fa-remove"></i> Reset</a>
                 </div>
             </div>
         </div>

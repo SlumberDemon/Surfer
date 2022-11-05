@@ -1,6 +1,6 @@
+let blackHoleButtons = document.getElementsByClassName("blackhole-button")
 let deleteButtons = document.getElementsByClassName("remove-button");
 let shareButtons = document.getElementsByClassName("share-button");
-let selectMenu = document.getElementById("booktype")
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -29,6 +29,29 @@ for (let button of shareButtons) {
         });
 }
 
-selectMenu.addEventListener("click", () => {
-    window.location.href = `/bookmarks?typ=image`;
-})
+for (let button of blackHoleButtons) {
+    fetch(`/integration/blackhole`)
+    .then(response => response.json())
+    .then(data => {
+            button.addEventListener("click", () => {
+                button.innerHTML = `<i class="fa fa-plus"></i> Uploading...`
+                if (data.settings[0].blackhole) {
+                fetch(`${data.settings[0].blackhole}`, {
+                  method: "POST",
+                  body: JSON.stringify({url: button.id}),
+                  headers: {"content-type" :"application/json"},
+                }).then(() => {
+                    button.innerHTML = `<i class="fa fa-check"></i>`
+                })
+                .then(() => {
+                    setTimeout(() => {
+                       button.innerHTML = `<i class="fa fa-send"></i> Black Hole`
+                    }, 550);
+                });
+            }
+            else {
+                alert("Please make sure to configure Black Hole Integration in your settings!")
+            }
+            });
+    })
+}

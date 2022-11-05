@@ -26,14 +26,17 @@
         <div class="content-card">
             <div class="card-details">
                 <div class="card-header">
-                    <h2 class="card-title" id="ctitle">{{ item["title"] }}</h2>
+                    <a href="{{ item['url'] }}">
+                        <h2 class="card-title" id="{{ item['id'] }}ctitle">{{ item["title"] }}</h2>
+                    </a>
                     <details>
                         <summary>Show Image</summary>
                         <img class="card-image" src="{{ item['content'][0] }}" alt="Image">
                     </details>
                 </div>
-                <div class="card-bottom" style="margin-top: 10px;">
-                    <a href="{{ item['url'] }}" class="button"><i class=" fa fa-link"></i> Visit</a>
+                <div class="card-bottom" style="margin-top: 10px; white-space: nowrap;">
+                    <a id="{{ item['url'] }}" class="button blackhole-button"><i class=" fa fa-send"></i> Black
+                        Hole</a>
                     <a id="{{ item['url'] }}" class="button share-button"><i class=" fa fa-share-alt"></i></a>
                     <a id="{{ item['key'] }}" class="button remove-button"><i class=" fa fa-trash"></i></a>
                 </div>
