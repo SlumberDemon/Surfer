@@ -174,12 +174,13 @@ async def history_page(request: Request):
 
 @app.get("/settings")
 async def settings_page(request: Request):
+    integrations = await integrations_check()
     return pages.TemplateResponse(
         "settings.html",
         {
             "request": request,
             "settings": await settings_check(),
-            "integrations": await integrations_check(),
+            "integrations": integrations,
         },
     )
 
