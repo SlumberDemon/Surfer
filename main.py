@@ -38,13 +38,12 @@ async def settings_check():
 async def integrations_check():
     data = config.get("integrations")
     if not data:
-        config.put({"settings": [{"blackhole": ""}]}, "integrations")
+        data = config.put({"settings": [{"blackhole": ""}]}, "integrations")
     return data
 
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    await integrations_check()
     return pages.TemplateResponse(
         "index.html",
         {"request": request, "settings": await settings_check()},
