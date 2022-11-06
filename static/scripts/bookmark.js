@@ -35,8 +35,8 @@ for (let button of blackHoleButtons) {
     .then(data => {
             button.addEventListener("click", () => {
                 button.innerHTML = `<i class="fa fa-plus"></i> Uploading...`
-                if (data.settings[0].blackhole) {
-                fetch(`${data.settings[0].blackhole}`, {
+                if (data.data[0].url) {
+                fetch(`${data.data[0].url}`, {
                   method: "POST",
                   body: JSON.stringify({url: button.id}),
                   headers: {"content-type" :"application/json"},

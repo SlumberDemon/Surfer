@@ -13,6 +13,7 @@ pages = Jinja2Templates(directory="templates")
 config = Base("config")
 history = Base("history")
 bookmarks = Base("bookmarks")
+integrations = Base("integrations")
 
 
 class NoCacheFileResponse(FileResponse):
@@ -35,10 +36,10 @@ async def settings_check():
     return data
 
 
-async def integrations_check():
-    data = config.get("integrations")
+async def integrations_check(integration: str):
+    data = integrations.get(integration)
     if not data:
-        data = config.put({"settings": [{"blackhole": ""}]}, "integrations")
+        data = integrations.put({"data": [{"integration": integration}]}, integration)
     return data
 
 
@@ -179,7 +180,7 @@ async def settings_page(request: Request):
         {
             "request": request,
             "settings": await settings_check(),
-            "integrations": await integrations_check(),
+            "blackhole": await integrations_check("blackhole"),
         },
     )
 
@@ -227,18 +228,15 @@ async def settings_data():
     return data
 
 
-# New integration system currently only supports one app, once more apps will be integrated this system will be improved and expaneded!
-
-
-@app.post("/integration/blackhole")
-async def blackhole_integration(url: str):
-    config.put({"settings": [{"blackhole": url}]}, "integrations")
+@app.post("/integration/{integration}")
+async def integration_configure(integration: str, url: str):
+    integrations.put({"data": [{"integration": integration, "url": url}]}, integration)
     return {"message": "success"}
 
 
-@app.get("/integration/blackhole")
-async def blackhole_integration():
-    data = config.get("integrations")
+@app.get("/integration/{integration}")
+async def integration_data(integration: str):
+    data = integrations.get(integration)
     return data
 
 
