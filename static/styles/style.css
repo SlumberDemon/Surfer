@@ -46,12 +46,12 @@
 }
 
 :root[active-theme="hackermode"] {
-    --colour1: #000000;
-    --colour2: #02FF00;
-    --colour3: #000000;
-    --colour4: #02FF00;
-    --colour5: #000000;
-    --colour6: #02FF00;
+    --colour1: #062F40;
+    --colour2: #025951;
+    --colour3: #1D734B;
+    --colour4: #168C40;
+    --colour5: #168C40;
+    --colour6: #82D92B;
 }
 
 :root[active-theme="material-dark"] {
@@ -111,13 +111,13 @@
 
 @media only screen and (max-width: 600px) {
     .title {
-        font-size: 60px;
         margin-top: 80px;
+        font-size: 60px;
     }
     .search {
+        font-size: 25px;
         width: 300px;
         height: 25px;
-        font-size: 25px;
     }
     .content-card {
         width: 300px;
@@ -127,8 +127,8 @@
     }
     .content-card.settings {
         background-color: transparent;
-        border: none;
         box-shadow: none;
+        border: none;
     }
 } 
   
@@ -138,9 +138,9 @@
         font-size: 100px;
     }
     .search {
+        font-size: 25px;
         width: 300px;
         height: 25px;
-        font-size: 25px;
     }
     .content-card {
         width: 300px;
@@ -155,9 +155,9 @@
         font-size: 100px;
     }
     .search {
+        font-size: 30px;
         width: 500px;
         height: 40px;
-        font-size: 30px;
     }
     .content-card {
         width: 500px;
@@ -172,9 +172,9 @@
         font-size: 150px;
     }
     .search {
+        font-size: 30px;
         width: 600px;
         height: 40px;
-        font-size: 30px;
     }
     .content-card {
         width: 600px;
@@ -183,16 +183,15 @@
         margin-top: 5px;
     }
 } 
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
+
 @media only screen and (min-width: 1200px) {
     .title {
         font-size: 150px;
     }
     .search {
+        font-size: 30px;
         width: 600px;
         height: 40px;
-        font-size: 30px;
     }
     .content-card {
         width: 600px;
@@ -204,28 +203,29 @@
 
 body {
     font-family: "Open Sans", sans-serif;
-    color: var(--colour5);
     background-color: var(--colour1);
-    display: flex;
     flex-direction: column;
+    color: var(--colour5);
     align-items: center;
+    display: flex;
 }
 
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 .button {
-    color: var(--colour5);
     background-color: var(--colour2);
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px 20px;
-    border-radius: 8px;
     transition: 0.1s linear;
-    margin-bottom: 50px;
-    user-select: none;
+    text-decoration: none;
+    color: var(--colour5);
+    /* margin-bottom: 50px; */
+    border-radius: 8px;
+    padding: 8px 20px;
+    margin-right: 2px;
+    margin-left: 2px;
+    font-size: 16px;
     cursor: pointer;
     border: none;
 }
@@ -235,19 +235,54 @@ body {
     color: var(--colour6);
 }
 
+.button-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.button.text-button {
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.button.blackhole-button {
+    justify-content: space-around;
+    align-items: center;
+    padding: 6px 12px;
+    display: flex;  
+}
+
+.botton.image-button {
+    padding: 6px 12px;
+}
+
+.button.save-button {
+    padding: 6px 12px;
+}
+
+.button.share-button {
+    padding: 6px 12px;
+}
+
+.button.remove-button {
+    padding: 6px 12px;
+}
+
 .search {
-    white-space: nowrap;
-    transition: 0.1s linear;
-    margin: auto;
-    padding: 4px 24px;
-    border-radius: 8px;
-    text-size-adjust: 10px;
     background-color: var(--colour2);
     border: 2px solid var(--colour3);
-    align-self: center;
-    justify-self: center;
+    transition: 0.1s linear;
+    text-size-adjust: 10px;
     color: var(--colour6);
+    justify-self: center;
     margin-bottom: 0.5%;
+    white-space: nowrap;
+    border-radius: 8px;
+    align-self: center;
+    padding: 4px 24px;
+    margin: auto;
 }
 
 .search::placeholder {
@@ -260,42 +295,47 @@ body {
 }
 
 .tagline {
-    margin-top: 0%;
     margin-bottom: 10%;
     font-size: 25px;
+    margin-top: 0%;
 }
 
 .menu-bar {
     margin-bottom: 15px;
+    display: flex
 }
 
-
 .content-card {
-    height: fit-content;
-    overflow: hidden;
-    border: 0.5px solid;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border-color: var(--colour4);
-    background-color: var(--colour3);
     box-shadow: 0 0 4px var(--colour4);
-    flex-direction: row;
-    display: flex;
-    margin-top: auto;
+    background-color: var(--colour3);
+    border-color: var(--colour4);
+    height: fit-content;
     margin-bottom: 10px;
+    flex-direction: row;
+    border: 0.5px solid;
+    border-radius: 8px;
+    padding: 10px 15px;
+    overflow: hidden;
+    margin-top: auto;
+    display: flex;
 }
 
 .content-card.settings {
-    width: auto;
     white-space: nowrap;
+    width: auto;
+}
+
+.settings-head {
+    flex-direction: row;
+    display: flex;
 }
 
 .card-details {
+    justify-content: space-between;
+    flex-direction: column;
+    height: fit-content;
     text-align: left;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: fit-content;
 }
 
 .card-header > a {
@@ -307,25 +347,25 @@ body {
 }
 
 .card-select {
-    cursor: pointer;
     background-color: var(--colour2);
     color: var(--colour5);
-    border: none;
-    font-size: 16px;
-    padding: 6px 20px;
     border-radius: 8px;
+    padding: 6px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
 }
 
 .card-inteput {
     border: 2px solid var(--colour3);
-    transition: 0.1s linear;
-    cursor: pointer;
     background-color: var(--colour2);
+    transition: 0.1s linear;
     color: var(--colour5);
-    border: none;
-    font-size: 15px;
-    padding: 8px 20px;
     border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
 }
 
 .card-inteput::placeholder {
@@ -341,12 +381,17 @@ body {
     color: var(--colour4);
 }
 
+.card-bottom {
+    display: flex;
+}
+
 .content-control {
     margin-bottom: 15px;
     margin-top: 15px;
+    display: flex;
 }
 
 img {
-    width: 100%;
     height: auto;
+    width: 100%;
 }

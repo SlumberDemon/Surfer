@@ -13,25 +13,38 @@ Notes:
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/static/images/icon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/static/styles/style.css" />
 </head>
 
 <body>
     <div class="menu-bar" style="margin-top: 20px;">
-        <a href="/" class="button"><i class=" fa fa-home"></i></a>
-        <a href="/bookmarks?typ=site" class="button"><i class=" fa fa-bookmark"></i></a>
-        <a href="/history" class="button"><i class=" fa fa-history"></i></a>
+        <a href="/" class="button text-button">
+            <div class="button-icon"></div><i data-feather="home"></i>
+        </a>
+        <a href="/bookmarks?typ=site" class="button text-button">
+            <div class="button-icon"></div><i data-feather="bookmark"></i></i>
+        </a>
+        <a href="/history" class="button text-button">
+            <div class="button-icon"></div><i data-feather="clock"></i>
+        </a>
     </div>
     <div class="settings">
         <div class="content-card settings">
             <div class="card-details">
                 <div class="card-header">
                     <h2 id="ctitle" class="card-title" style="margin-bottom: 10px;">Settings</h2>
-                    <a id="history-mode-toggle" class="button"><i class=" fa fa-history"></i> {{
-                        settings["settings"][0]["history"] }}</a>
-                    <a id="clear-history-button" class="button"><i class=" fa fa-trash"></i> History</a>
-                    <a id="clear-bookmarks-button" class="button"><i class=" fa fa-trash"></i> Bookmarks</a>
+                    <div class="settings-head">
+                        <a id="history-mode-toggle" class="button text-button">
+                            <div class="button-icon"></div><i data-feather="clock"></i> {{
+                            settings["settings"][0]["history"] }}
+                        </a>
+                        <a id="clear-history-button" class="button text-button">
+                            <div class="button-icon"></div><i data-feather="trash-2"></i> History
+                        </a>
+                        <a id="clear-bookmarks-button" class="button text-button">
+                            <div class="button-icon"></div><i data-feather="trash-2"></i> Bookmarks
+                        </a>
+                    </div>
                 </div>
                 <div class="card-middle" style="margin-top: 10px;">
                     <p class="card-summary">Themes</p>
@@ -79,13 +92,21 @@ Notes:
                         value="{{ blackhole['data'][0]['url'] }}" autocomplete="off" style="margin-bottom: 10px;">
                 </div>
                 <div class="card-bottom" style="margin-top: 10px;">
-                    <a id="ssave" class="button"><i class=" fa fa-save"></i> Save</a>
-                    <a id="sreset" class="button"><i class=" fa fa-remove"></i> Reset</a>
+                    <a id="ssave" class="button">
+                        <div class="button-icon"></div><i data-feather="save"></i>
+                    </a>
+                    <a id="sreset" class="button">
+                        <div class="button-icon"></div><i data-feather="delete"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script src="/static/scripts/settings.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace()
+</script>
 
 </html>

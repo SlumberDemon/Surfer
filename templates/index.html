@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/static/images/icon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/static/styles/style.css" />
 </head>
 
@@ -16,13 +15,26 @@
     <h2 class="tagline">Discover the web</h2>
     <input id="sbar" class="search" type="text" placeholder="Start searching here..." autocomplete="off">
     <div class="menu-bar">
-        <a id="sbutton" class="button"><i class=" fa fa-search"></i></a>
-        <a id="ibutton" class="button"><i class=" fa fa-image"></i></a>
-        <a href="/bookmarks?typ=site" class="button"><i class=" fa fa-bookmark"></i></a>
-        <a href="/history" class="button"><i class=" fa fa-history"></i></a>
-        <a href="/settings" class="button"><i class=" fa fa-gear"></i></a>
+        <a id="sbutton" class="button"><i data-feather="search"></i></a>
+        <a id="ibutton" class="button">
+            <div class="button-icon"></div><i data-feather="image"></i>
+        </a>
+        <a href="/bookmarks?typ=site" class="button">
+            <div class="button-icon"></div><i data-feather="bookmark"></i>
+        </a>
+        <a href="/history" class="button">
+            <div class="button-icon"></div><i data-feather="clock"></i>
+        </a>
+        <a href="/settings" class="button">
+            <div class="button-icon"></div><i data-feather="settings"></i>
+        </a>
     </div>
 </body>
+<script src="/static/scripts/home.js"></script>
 <script src="/static/scripts/script.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace()
+</script>
 
 </html>
