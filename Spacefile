@@ -2,5 +2,7 @@ v: 1
 icon: ./static/images/discovery.png
 micros:
 - name: surfer
+  presets:
+    api_keys: true
   src: .
   engine: python3.9

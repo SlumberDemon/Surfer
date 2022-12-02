@@ -20,6 +20,7 @@ homepage: "https://surfer.deta.dev"
 
 #### [Black Hole](https://alpha.deta.space/discovery/@mikhailsdv/black_hole-3kf)
 - Send images directly to your white hole
+- Use surfer's image search directly in your blackhole app
 
 ## Themes
 

@@ -1,3 +1,4 @@
+import fastapi
 from deta import Base
 from datetime import datetime
 from fastapi import FastAPI, Request
@@ -92,36 +93,49 @@ async def image_results(request: Request, query: str, results: int = 25):
 @app.get("/search", response_class=HTMLResponse)
 async def search_results(request: Request, query: str, results: int = 50):
     data = await settings_check()
-    time = datetime.now()
-    try:
-        if data["settings"][0]["history"] == True:
-            history.put(
-                {
-                    "query": query,
-                    "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
-                }
-            )
-        results = ddg(
-            query, safesearch=data["settings"][0]["search"], max_results=results
+    if query.startswith(">surf:home"):
+        return fastapi.responses.RedirectResponse("/")
+    elif query.startswith(">surf:history"):
+        return fastapi.responses.RedirectResponse("/history")
+    elif query.startswith(">surf:bookmarks"):
+        return fastapi.responses.RedirectResponse("/bookmarks?typ=site")
+    elif query.startswith(">surf:settings"):
+        return fastapi.responses.RedirectResponse("/settings")
+    elif query.startswith(">surf:image"):
+        return fastapi.responses.RedirectResponse(
+            f"/image?query={query.removeprefix('>surf:image')}"
         )
-        id = 1
-        items = []
-        for item in results:
-            items.append(
-                {
-                    "title": item["title"],
-                    "body": item["body"],
-                    "href": item["href"],
-                    "id": id,
-                }
+    else:
+        time = datetime.now()
+        try:
+            if data["settings"][0]["history"] == True:
+                history.put(
+                    {
+                        "query": query,
+                        "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
+                    }
+                )
+            results = ddg(
+                query, safesearch=data["settings"][0]["search"], max_results=results
             )
-            id += 1
-        return pages.TemplateResponse(
-            "search.html",
-            {"request": request, "items": items, "query": query, "settings": data},
-        )
-    except:
-        return {"message": "An error occurred"}
+            id = 1
+            items = []
+            for item in results:
+                items.append(
+                    {
+                        "title": item["title"],
+                        "body": item["body"],
+                        "href": item["href"],
+                        "id": id,
+                    }
+                )
+                id += 1
+            return pages.TemplateResponse(
+                "search.html",
+                {"request": request, "items": items, "query": query, "settings": data},
+            )
+        except:
+            return {"message": "An error occurred"}
 
 
 @app.post("/bookmark")
@@ -238,6 +252,41 @@ async def integration_configure(integration: str, url: str):
 async def integration_data(integration: str):
     data = integrations.get(integration)
     return data
+
+
+@app.get("/api/search/image")
+async def api_search_image(query: str, results: int = 25):
+    data = await settings_check()
+    time = datetime.now()
+    try:
+        if data["settings"][0]["history"] == True:
+            history.put(
+                {
+                    "query": query,
+                    "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
+                }
+            )
+        results = ddg_images(
+            query, safesearch=data["settings"][0]["search"], max_results=results
+        )
+        id = 1
+        items = []
+        for item in results:
+            items.append(
+                {
+                    "title": item["title"],
+                    "image": item["image"],
+                    "thumbnail": item["thumbnail"],
+                    "height": item["height"],
+                    "width": item["width"],
+                    "source": item["source"],
+                    "id": id,
+                }
+            )
+            id += 1
+        return {"items": items, "query": query}
+    except:
+        pass
 
 
 @app.get("/static/{path:path}")
