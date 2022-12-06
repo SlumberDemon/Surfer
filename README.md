@@ -10,6 +10,15 @@
 - Moblie supported
 - Themes (12)
 - Safesearch
+- Surfcuts
+
+## Surfcuts
+- `>surf:home`
+- `>surf:history`
+- `>surf:settings`
+- `>surf:bookmarks`
+- `>surf:image query here`
+
 
 ## Integrations
 
