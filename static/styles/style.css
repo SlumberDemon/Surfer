@@ -395,3 +395,8 @@ img {
     height: auto;
     width: 100%;
 }
+
+.query-error{
+    visibility: hidden;
+    text-align: center;
+}
