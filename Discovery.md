@@ -12,7 +12,7 @@ homepage: "https://surfer.deta.dev"
 - Cross space app integrations
 - Site/Image Bookmarks
 - History (Toggable)
-- Moblie supported
+- Mobile supported
 - Themes (12)
 - Safesearch
 - Surfcuts
