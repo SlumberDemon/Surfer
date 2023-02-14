@@ -13,7 +13,7 @@ homepage: "https://surfer.deta.dev"
 - Automatic history cleaner
 - Site/Image Bookmarks
 - History (Toggable)
-- Moblie supported
+- Mobile supported
 - Themes (12)
 - Safesearch
 - Surfcuts
