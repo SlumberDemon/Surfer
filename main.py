@@ -289,6 +289,24 @@ async def api_search_image(query: str, results: int = 25):
         pass
 
 
+# Automatic
+
+
+@app.post("/__space/v0/actions")
+async def actions(request: Request):
+    data = await request.json()
+    event = data["event"]
+    if event["id"] == "history":
+        res = history.fetch()
+        items = res.items
+        while res.last:
+            res = history.fetch(last=res.last)
+            items += res.items
+
+        for item in items:
+            history.delete(item["key"])
+
+
 @app.get("/static/{path:path}")
 async def static(path: str):
     return NoCacheFileResponse(f"./static/{path}")

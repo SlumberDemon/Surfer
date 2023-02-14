@@ -1,8 +1,14 @@
 v: 1
 icon: ./static/images/discovery.png
 micros:
-- name: surfer
-  presets:
-    api_keys: true
-  src: .
-  engine: python3.9
+  - name: surfer
+    presets:
+      api_keys: true
+    src: .
+    engine: python3.9
+    actions:
+      - id: "history"
+        name: "History Clean"
+        description: "Removes your surfer history"
+        trigger: "schedule"
+        default_interval: "0 00 * * *"
