@@ -290,6 +290,11 @@ body {
     font-style: italic;
 }
 
+.search:focus {
+    border-color: var(--colour5);
+    outline:none;
+}
+
 .title {
     margin-bottom: 0%;
 }

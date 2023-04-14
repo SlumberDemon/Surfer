@@ -258,35 +258,32 @@ async def integration_data(integration: str):
 async def api_search_image(query: str, results: int = 25):
     data = await settings_check()
     time = datetime.now()
-    try:
-        if data["settings"][0]["history"] == True:
-            history.put(
-                {
-                    "query": query,
-                    "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
-                }
-            )
-        results = ddg_images(
-            query, safesearch=data["settings"][0]["search"], max_results=results
+    if data["settings"][0]["history"] == True:
+        history.put(
+            {
+                "query": query,
+                "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
+            }
         )
-        id = 1
-        items = []
-        for item in results:
-            items.append(
-                {
-                    "title": item["title"],
-                    "image": item["image"],
-                    "thumbnail": item["thumbnail"],
-                    "height": item["height"],
-                    "width": item["width"],
-                    "source": item["source"],
-                    "id": id,
-                }
-            )
-            id += 1
-        return {"items": items, "query": query}
-    except:
-        pass
+    results = ddg_images(
+        query, safesearch=data["settings"][0]["search"], max_results=results
+    )
+    id = 1
+    items = []
+    for item in results:
+        items.append(
+            {
+                "title": item["title"],
+                "image": item["image"],
+                "thumbnail": item["thumbnail"],
+                "height": item["height"],
+                "width": item["width"],
+                "source": item["source"],
+                "id": id,
+            }
+        )
+        id += 1
+    return {"items": items, "query": query}
 
 
 # Automatic

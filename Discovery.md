@@ -1,14 +1,13 @@
 ---
-title: "Surfer"
-tagline: "Discover the web"
+title: "Surfer: Discover the web"
+tagline: "Your personal search engine"
 theme_color: "#110DEB"
 git: "https://github.com/SlumberDemon/Surfer"
 homepage: "https://surfer.deta.dev"
 ---
 
-# Your personal search engine
-
 ## Features
+
 - Cross space app integrations
 - Automatic history cleaner
 - Site/Image Bookmarks
@@ -19,23 +18,25 @@ homepage: "https://surfer.deta.dev"
 - Surfcuts
 
 ## Surfcuts
+
 - `>surf:home`
 - `>surf:history`
 - `>surf:settings`
 - `>surf:bookmarks`
 - `>surf:image query here`
 
-
 ## Integrations
 
 #### [Black Hole](https://alpha.deta.space/discovery/@mikhailsdv/black_hole-3kf)
+
 - Send images directly to your white hole
 - Use surfer's image search directly in your blackhole app
 
 ## Themes
 
 #### Standard
-- Light 
+
+- Light
 - Dark
 
 #### Dark

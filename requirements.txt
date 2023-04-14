@@ -1,4 +1,5 @@
 duckduckgo_search
 fastapi
+uvicorn
 jinja2
 deta

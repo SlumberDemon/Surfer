@@ -25,10 +25,12 @@
     <div class="bookmarks">
         <div class="content-control">
             <a href="/bookmarks?typ=site" class="button text-button">
-                <div class="button-icon"></div><i data-feather="bookmark"></i> Sites
+                <div class="button-icon"></div><i data-feather="bookmark"
+                    style="margin-right: 4px; height: 20px; width: 20px;"></i> Sites
             </a>
             <a href="/bookmarks?typ=image" class="button text-button">
-                <div class="button-icon"></div><i data-feather="image"></i> Images
+                <div class="button-icon"></div><i data-feather="image"
+                    style="margin-right: 4px; height: 20px; width: 20px;"></i> Images
             </a>
         </div>
         {% for item in items %}
@@ -45,13 +47,14 @@
                 </div>
                 <div class="card-bottom" style="margin-top: 10px; white-space: nowrap;">
                     <a id="{{ item['url'] }}" class="button blackhole-button">
-                        <div class="button-icon"></div><i data-feather="send"></i> Black Hole
+                        <div class="button-icon"></div><i data-feather="send"
+                            style="margin-right: 4px; height: 20px; width: 20px;"></i> Black Hole
                     </a>
                     <a id="{{ item['url'] }}" class="button share-button">
-                        <div class="button-icon"></div><i data-feather="share-2"></i>
+                        <div class="button-icon"></div><i data-feather="share-2" style="height: 20px; width: 20px;"></i>
                     </a>
                     <a id="{{ item['key'] }}" class="button remove-button">
-                        <div class="button-icon"></div><i data-feather="trash-2"></i>
+                        <div class="button-icon"></div><i data-feather="trash-2" style="height: 20px; width: 20px;"></i>
                     </a>
                 </div>
             </div>

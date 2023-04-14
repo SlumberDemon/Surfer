@@ -1,4 +1,4 @@
-v: 1
+v: 0
 icon: ./static/images/discovery.png
 micros:
   - name: surfer
@@ -6,6 +6,7 @@ micros:
       api_keys: true
     src: .
     engine: python3.9
+    run: uvicorn main:app
     actions:
       - id: "history"
         name: "History Clean"
