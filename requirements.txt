@@ -1,5 +1,6 @@
-duckduckgo_search
+BingImages
 fastapi
+hanapin
 uvicorn
 jinja2
 deta

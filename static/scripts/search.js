@@ -14,9 +14,9 @@ for (let button of saveButtons) {
       `${button.id.split("~")[0]}csummary`
     );
     fetch(
-      `/bookmark?title=${title.innerHTML}&content=${
-        description.innerHTML
-      }&url=${button.id.split("~")[1]}&typ=site`,
+      `/bookmark?title=${title.innerHTML}&content=Deprecated&url=${
+        button.id.split("~")[1]
+      }&typ=site`,
       { method: "POST" }
     )
       .then(() => {

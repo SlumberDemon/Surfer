@@ -14,7 +14,6 @@ homepage: "https://surfer.deta.dev"
 - History (Toggable)
 - Mobile supported
 - Themes (12)
-- Safesearch
 - Surfcuts
 
 ## Surfcuts

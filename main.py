@@ -1,11 +1,12 @@
-import fastapi
+import warnings
 from deta import Base
+from hanapin import Google
 from datetime import datetime
+from BingImages import BingImages
 from fastapi import FastAPI, Request
-from duckduckgo_search import ddg, ddg_images
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse, RedirectResponse
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
@@ -53,7 +54,7 @@ async def home(request: Request):
 
 
 @app.get("/image", response_class=HTMLResponse)
-async def image_results(request: Request, query: str, results: int = 25):
+async def image_results(request: Request, query: str, limit: int = 25):
     data = await settings_check()
     time = datetime.now()
     try:
@@ -64,20 +65,18 @@ async def image_results(request: Request, query: str, results: int = 25):
                     "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
                 }
             )
-        results = ddg_images(
-            query, safesearch=data["settings"][0]["search"], max_results=results
-        )
+        results = BingImages(query, count=limit).get()
         id = 1
         items = []
         for item in results:
             items.append(
                 {
-                    "title": item["title"],
-                    "image": item["image"],
-                    "thumbnail": item["thumbnail"],
-                    "height": item["height"],
-                    "width": item["width"],
-                    "source": item["source"],
+                    "title": item,
+                    "image": item,
+                    "thumbnail": item,
+                    # "height": item["height"], Deprecated
+                    # "width": item["width"], Deprecated
+                    # "source": item["source"], Deprecated
                     "id": id,
                 }
             )
@@ -86,25 +85,26 @@ async def image_results(request: Request, query: str, results: int = 25):
             "image.html",
             {"request": request, "items": items, "query": query, "settings": data},
         )
-    except:
-        pass
+    except Exception as e:
+        warnings.warn(e)
+        return JSONResponse(
+            content={"message": "An error occurred", "error": e},
+        )
 
 
 @app.get("/search", response_class=HTMLResponse)
-async def search_results(request: Request, query: str, results: int = 50):
+async def search_results(request: Request, query: str, limit: int = 50):
     data = await settings_check()
     if query.startswith(">surf:home"):
-        return fastapi.responses.RedirectResponse("/")
+        return RedirectResponse("/")
     elif query.startswith(">surf:history"):
-        return fastapi.responses.RedirectResponse("/history")
+        return RedirectResponse("/history")
     elif query.startswith(">surf:bookmarks"):
-        return fastapi.responses.RedirectResponse("/bookmarks?typ=site")
+        return RedirectResponse("/bookmarks?typ=site")
     elif query.startswith(">surf:settings"):
-        return fastapi.responses.RedirectResponse("/settings")
+        return RedirectResponse("/settings")
     elif query.startswith(">surf:image"):
-        return fastapi.responses.RedirectResponse(
-            f"/image?query={query.removeprefix('>surf:image')}"
-        )
+        return RedirectResponse(f"/image?query={query.removeprefix('>surf:image')}")
     else:
         time = datetime.now()
         try:
@@ -115,17 +115,15 @@ async def search_results(request: Request, query: str, results: int = 50):
                         "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
                     }
                 )
-            results = ddg(
-                query, safesearch=data["settings"][0]["search"], max_results=results
-            )
+            results = Google(query, count=limit).results()
             id = 1
             items = []
             for item in results:
                 items.append(
                     {
                         "title": item["title"],
-                        "body": item["body"],
-                        "href": item["href"],
+                        # "body": item["body"], Deprecated
+                        "href": item["link"],
                         "id": id,
                     }
                 )
@@ -134,8 +132,11 @@ async def search_results(request: Request, query: str, results: int = 50):
                 "search.html",
                 {"request": request, "items": items, "query": query, "settings": data},
             )
-        except:
-            return {"message": "An error occurred"}
+        except Exception as e:
+            warnings.warn(e)
+            return JSONResponse(
+                content={"message": "An error occurred", "error": e},
+            )
 
 
 @app.post("/bookmark")
@@ -265,25 +266,49 @@ async def api_search_image(query: str, results: int = 25):
                 "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
             }
         )
-    results = ddg_images(
-        query, safesearch=data["settings"][0]["search"], max_results=results
-    )
+    results = BingImages(query, count=results).get()
+    id = 1
+    items = []
+    for item in results:
+        items.append(
+            {
+                "title": item,
+                "image": item,
+                "thumbnail": item,
+                # "height": item["height"], Deprecated
+                # "width": item["width"], Deprecated
+                # "source": item["source"], Deprecated
+                "id": id,
+            }
+        )
+        id += 1
+    return {"items": items, "query": query, "settings": data}
+
+
+@app.get("/api/search/text")
+async def api_search_text(query: str, limit: int = 50):
+    data = await settings_check()
+    time = datetime.now()
+    if data["settings"][0]["history"] == True:
+        history.put(
+            {
+                "query": query,
+                "time": f"{time.strftime('%A')}, {time.strftime('%B')} {time.strftime('%-d')}, {time.strftime('%Y')} {time.strftime('%-H')}:{time.strftime('%M')}:{time.strftime('%S')} {time.strftime('%p')}",
+            }
+        )
+    results = Google(query, count=limit).results()
     id = 1
     items = []
     for item in results:
         items.append(
             {
                 "title": item["title"],
-                "image": item["image"],
-                "thumbnail": item["thumbnail"],
-                "height": item["height"],
-                "width": item["width"],
-                "source": item["source"],
+                "href": item["link"],
                 "id": id,
             }
         )
         id += 1
-    return {"items": items, "query": query}
+    return {"items": items, "query": query, "settings": data}
 
 
 # Automatic
