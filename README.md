@@ -1,6 +1,6 @@
 # Your personal search engine
 
-![Home](https://sleep.deta.dev/cdn/surfer.png)
+![Home](screenshots/main.png)
 
 > Theme: Ocean Blue
 

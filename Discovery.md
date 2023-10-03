@@ -1,9 +1,13 @@
 ---
+app_name: "Surfer"
 title: "Surfer: Discover the web"
 tagline: "Your personal search engine"
 theme_color: "#110DEB"
 git: "https://github.com/SlumberDemon/Surfer"
 homepage: "https://surfer.deta.dev"
+open_code: true
+media:
+  - "screenshots/main.png"
 ---
 
 ## Features
